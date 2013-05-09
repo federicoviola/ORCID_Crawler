@@ -44,7 +44,7 @@ def getRecords(strid):
     #try:
     author=orcid.get(strid)
     if(author.orcid==None):
-        print strid,' - None'
+        #print strid,' - None'
         return None
     else:
         print strid
@@ -64,7 +64,9 @@ def getRecords(strid):
                 l.append(replaceNone(ls[index].title))
                 l.append(replaceNone(ls[index].subtitle))
                 l.append(replaceNone(ls[index].citation))
-                l.append(replaceNone(str(ls[index].external_ids[0])))
+                if(ls[index].external_ids!=None):
+                    l.append(replaceNone(str(ls[index].external_ids[0])))
+                else: l.append("None")
                 l.append(replaceNone(ls[index].url))
                 ls_pub.append(l)
         else:
@@ -107,7 +109,7 @@ def Download(orcidStart,orcidEnd, sleepBase):
         
 if __name__=="__main__":
     #test
-    #Download('000000020035100','000000020035200',10)
+    #Download('000000020035100','000000020045100',100000)
 
     #2013-05-08
     orcidStart='000000015000000'
